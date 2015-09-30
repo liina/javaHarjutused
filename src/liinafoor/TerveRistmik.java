@@ -11,112 +11,75 @@ public class TerveRistmik extends Application{
         Foor parem = new Foor("paremal",primaryStage);
         Foor vasak = new Foor("vasakul",primaryStage);
         int j = 3; //tsyklite arv
-        for (int i=0;i<8;i++) { //kollane vilkumine
-            parem.kollane();
-            parem.paus(1);
-            vasak.kollane();
-            vasak.paus(1);
-            ylal.kollane();
-            ylal.paus(1);
-            all.kollane();
-            all.paus(1);
-            i++;
-        }
-        ylal.punane(); //algseis
+
+        kollanevilgub(ylal);
+        kollanevilgub(all);
+        kollanevilgub(parem);
+        kollanevilgub(vasak);
+
+        ylal.punane(); //lülitub töörezhiimi
         all.punane();
         parem.punane();
         vasak.punane();
-        while ( j > 0){
-            ylal.paus(23);
-            all.paus(23);
-            parem.paus(1);
+        parem.paus(1);
+        vasak.paus(1);
+        while ( j > 0) {
+            ylal.paus(21);
+            all.paus(21);
+            roheliseks(parem); //kestab 10
+            roheliseks(vasak);
+            parem.paus(1); //oota 1
             vasak.paus(1);
-            for (int i=0;i<9;i++) { //p-v punane hakkab vilkuma
-                parem.punane();
-                parem.paus(1);
-                vasak.punane();
-                vasak.paus(1);
-                i++;
-            }
-            parem.kollane(); //p-v kollaseks
-            vasak.kollane();
-            parem.paus(2);
-            vasak.paus(2);
-            parem.kollane();
-            vasak.kollane();
-            parem.roheline(); //p-v roheliseks
-            vasak.roheline();
-            parem.paus(1);
-            vasak.paus(1);
-            for (int i=0;i<9;i++) { //p-v roheline vilkuma
-                parem.roheline();
-                parem.paus(1);
-                vasak.roheline();
-                vasak.paus(1);
-                i++;
-            }
-            parem.kollane(); //p-v kollaseks
-            vasak.kollane();
-            parem.paus(2);
-            vasak.paus(2);
-            parem.kollane();
-            vasak.kollane();
-            parem.punane(); //p-v punaseks
-            vasak.punane();
-            parem.paus(23);
-            vasak.paus(23);
-
-            //sama ü-a jaoks
-            for (int i=0;i<9;i++) { //p-v punane hakkab vilkuma
-                ylal.punane();
-                ylal.paus(1);
-                all.punane();
-                all.paus(1);
-                i++;
-            }
-            ylal.kollane(); //p-v kollaseks
-            all.kollane();
-            ylal.paus(2);
-            all.paus(2);
-            ylal.kollane();
-            all.kollane();
-            ylal.roheline(); //p-v roheliseks
-            all.roheline();
+            punaseks(parem); //kestab 10
+            punaseks(vasak);
+            parem.paus(21);
+            vasak.paus(21);
+            roheliseks(ylal); //mingi viide tuleb sisse siin - ootaks, et punane hakkaks kohe vilkuma, sest 21 on läbi
+            roheliseks(all);
             ylal.paus(1);
             all.paus(1);
-            for (int i=0;i<9;i++) { //p-v roheline vilkuma
-                ylal.roheline();
-                ylal.paus(1);
-                all.roheline();
-                all.paus(1);
-                i++;
-            }
-            ylal.kollane(); //p-v kollaseks
-            all.kollane();
-            ylal.paus(2);
-            all.paus(2);
-            ylal.kollane();
-            all.kollane();
-            ylal.punane(); //p-v punaseks
-            all.punane();
-            ylal.paus(1);
-            all.paus(1);
+            punaseks(ylal); //kestab 10
+            punaseks(all);
             j--;
         }
-        ylal.punane();
+        ylal.paus(1); //hoiab punast
+        all.paus(1);
+        ylal.punane(); //kustutab punased ära
         all.punane();
         parem.punane();
         vasak.punane();
+        kollanevilgub(ylal); //ja öörezhiimile ja lõpuks kustub
+        kollanevilgub(all);
+        kollanevilgub(parem);
+        kollanevilgub(vasak);
+    }
+    public void kollanevilgub (Foor x) {
         for (int i=0;i<8;i++) { //kollane vilkumine
-            parem.kollane();
-            parem.paus(1);
-            vasak.kollane();
-            vasak.paus(1);
-            ylal.kollane();
-            ylal.paus(1);
-            all.kollane();
-            all.paus(1);
+            x.kollane();
+            x.paus(1);
             i++;
         }
+    }
+    public void roheliseks (Foor x)  {
+       for (int i=0;i<9;i++) { //punane hakkab vilkuma
+            x.punane();
+            x.paus(1);
+            i++;
+        }
+        x.kollane(); //kollaseks
+        x.paus(2);
+        x.kollane();
+        x.roheline(); //roheliseks
+    }
+    public void punaseks (Foor x)  {
+        for (int i=0;i<9;i++) { //roheline vilkuma
+            x.roheline();
+            x.paus(1);
+            i++;
+        }
+        x.kollane(); //kollaseks
+        x.paus(2);
+        x.kollane();
+        x.punane(); //punaseks
     }
 }

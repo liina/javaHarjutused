@@ -11,7 +11,7 @@ public class KollaneVilgub extends Application {
         Foor foor = new Foor("üleval", primaryStage);
         for (int i=0;i<10;i++) {
             foor.kollane(); //paneb põlema v. kustutab ära
-            foor.paus(2);   //ootab enne järgmisele ringile minekut
+            foor.paus(1);   //ootab enne järgmisele ringile minekut
             i++;
         }
     }
